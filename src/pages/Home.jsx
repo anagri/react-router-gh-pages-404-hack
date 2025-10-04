@@ -10,6 +10,15 @@ function Home() {
       <h1>Home Page</h1>
       <p>Welcome to the home page!</p>
 
+      <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#fff3cd', borderRadius: '8px', border: '1px solid #ffc107' }}>
+        <h3>Environment Configuration</h3>
+        <div style={{ marginTop: '15px', fontFamily: 'monospace', fontSize: '0.9rem' }}>
+          <p><strong>VITE_KEYCLOAK_SERVER:</strong> {import.meta.env.VITE_KEYCLOAK_SERVER || '<not set>'}</p>
+          <p><strong>VITE_KEYCLOAK_REALM:</strong> {import.meta.env.VITE_KEYCLOAK_REALM || '<not set>'}</p>
+          <p><strong>VITE_OAUTH_CLIENT_ID:</strong> {import.meta.env.VITE_OAUTH_CLIENT_ID || '<not set>'}</p>
+        </div>
+      </div>
+
       {isAuthenticated && userInfo && (
         <div style={{ marginTop: '30px', padding: '20px', backgroundColor: '#f5f5f5', borderRadius: '8px' }}>
           <h3>User Information</h3>

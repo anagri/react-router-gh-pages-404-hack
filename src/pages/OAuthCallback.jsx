@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { handleCallback } from '../utils/auth'
 import { useAuth } from '../context/AuthContext'
@@ -9,8 +9,13 @@ function OAuthCallback() {
   const { updateAuthState } = useAuth()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
+  const hasProcessed = useRef(false)
 
   useEffect(() => {
+    if (hasProcessed.current) {
+      return
+    }
+
     const processCallback = async () => {
       const code = searchParams.get('code')
       const state = searchParams.get('state')
@@ -27,6 +32,8 @@ function OAuthCallback() {
         setLoading(false)
         return
       }
+
+      hasProcessed.current = true
 
       try {
         await handleCallback(code, state)
