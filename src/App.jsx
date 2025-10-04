@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/react-router-gh-pages-404-hack">
       <div>
         <Navigation />
         <Routes>
